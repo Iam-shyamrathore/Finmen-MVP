@@ -33,43 +33,64 @@ Welcome to the FINMEN MVP (Minimum Viable Product), a financial wellness app des
    cd finmen-mvp
    ```
 
-2. **Install Dependencies**
+2. **Set Up Backend**
    ```bash
+   cd finmen-backend
+   npm install
+   ```
+   - Configure MongoDB connection in the backend (create `.env` file with `MONGO_URI`)
+   - Start the backend server:
+   ```bash
+   npm start
+   ```
+   - Backend will run on `http://192.168.0.109:5000` (or your local IP)
+
+3. **Set Up Frontend**
+   ```bash
+   cd ../finmen-frontend
    npm install
    ```
 
-3. **Set Up Backend**
-   - Ensure the backend server is running on `http://192.168.0.109:5000`
-   - Configure MongoDB connection in the backend (e.g., `.env` file with `MONGO_URI`)
-   - Start the backend server:
-   ```bash
-   cd ../backend  # Adjust path to backend directory
-   npm start
-   ```
-
-4. **Start the App**
-   - Run the Expo development server:
+4. **Start the Expo App**
    ```bash
    npx expo start --clear
    ```
-   - Use the Expo Go app on your device or a browser to view the app
+   - Use the Expo Go app on your device to view the app
+   - Ensure your device is on the same network as your development machine
 
 ## Configuration
 
-- **API Endpoint**: Update the base URL in `LoginScreen.js` (`http://192.168.0.109:5000/api/auth/login`) if your backend IP or port changes
-- **Environment Variables**: If using a `.env` file for secrets (e.g., JWT secret), ensure it's set up in the backend
+- **API Endpoint**: The backend runs on `http://192.168.0.109:5000` (your local IP address)
+  - **Important**: This IP address is configured for Expo Go connectivity. Both your development machine and mobile device must be on the same network
+  - Keep this IP address unchanged until the project is ready for production deployment
+  - If you need to change the IP, update it in the frontend API calls (e.g., `LoginScreen.js`)
+- **Environment Variables**: Create a `.env` file in the `finmen-backend` directory with:
+  ```
+  MONGO_URI=your_mongodb_connection_string
+  JWT_SECRET=your_jwt_secret_key
+  PORT=5000
+  ```
 
 ## Project Structure
 
 ```
 finmen-mvp/
-├── src/
-│   ├── screens/          # React components (LoginScreen, HomeScreen, MissionList, MoodTracker)
-│   ├── navigation/       # Navigation setup (AppNavigator)
-│   └── services/         # API service files (if any)
-├── App.js                # Main app entry point
-├── README.md             # This file
-└── package.json          # Project dependencies
+├── finmen-backend/       # Backend server (Node.js, Express, MongoDB)
+│   ├── models/           # Database models
+│   ├── routes/           # API routes
+│   ├── middleware/       # Authentication & validation middleware
+│   ├── config/           # Database configuration
+│   ├── server.js         # Backend entry point
+│   └── package.json      # Backend dependencies
+├── finmen-frontend/      # Frontend app (React Native, Expo)
+│   ├── src/
+│   │   ├── screens/      # React components (LoginScreen, HomeScreen, MissionList, MoodTracker)
+│   │   ├── navigation/   # Navigation setup (AppNavigator)
+│   │   └── services/     # API service files
+│   ├── App.js            # Frontend entry point
+│   └── package.json      # Frontend dependencies
+├── .gitignore            # Git ignore rules
+└── README.md             # This file
 ```
 
 ## Usage
@@ -90,8 +111,13 @@ git checkout -b feature/mission-tracking
 ```
 
 ### Make Changes
+- Navigate to the appropriate directory:
+  - Frontend changes: `cd finmen-frontend`
+  - Backend changes: `cd finmen-backend`
 - Implement your features or fixes
-- Test locally with `npx expo start --clear`
+- Test locally:
+  - Frontend: `npx expo start --clear` (from finmen-frontend directory)
+  - Backend: `npm start` (from finmen-backend directory)
 
 ### Commit Changes
 Stage and commit your changes:
@@ -125,9 +151,11 @@ Address feedback and merge after approval.
 ### Common Issues
 
 1. **Backend Connection Issues**
-   - Verify the backend server is running on the correct IP and port
-   - Check network connectivity between frontend and backend
-   - Ensure MongoDB connection is established
+   - Verify the backend server is running on `http://192.168.0.109:5000`
+   - Ensure both your development machine and mobile device are on the same WiFi network
+   - Check that the IP address matches your machine's local IP
+   - Verify MongoDB connection is established (check console logs)
+   - Test API endpoints using tools like Postman or curl
 
 2. **Expo Development Issues**
    - Clear Expo cache: `npx expo start --clear`
