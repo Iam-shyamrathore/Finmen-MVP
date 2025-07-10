@@ -10,9 +10,10 @@ const missionSchema = new mongoose.Schema({
   category: { type: String, enum: ['Saving', 'Budgeting', 'Debt Payoff'], required: true },
   difficulty: { type: String, enum: ['Beginner', 'Intermediate', 'Advanced'], required: true },
   tasks: [{ task: String, completed: { type: Boolean, default: false } }],
-  reward: { type: String, required: true },
+  reward: { type: Number, required: true }, // Changed to Number for HealCoins
   timeLeft: { type: String, required: true },
-  createdAt: { type: Date, default: Date.now },
+  completed: { type: Boolean, default: false },
+  createdAt: { type: Date, default: Date.now }
 });
 
 module.exports = mongoose.model('Mission', missionSchema);

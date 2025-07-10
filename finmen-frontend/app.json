@@ -2,20 +2,25 @@
   "expo": {
     "name": "finmen-frontend",
     "slug": "finmen-frontend",
+    "owner": "shyam9211",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
+    "scheme": "finmen-frontend",
     "splash": {
       "image": "./assets/splash-icon.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.finmen.finmen"
     },
     "android": {
+      "package": "com.finmen.finmen",
+      "versionCode": 1,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
@@ -27,6 +32,11 @@
     },
     "plugins": [
       "expo-font"
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "eaee37d7-4157-46b8-896e-de9d73be18f4"
+      }
+    }
   }
 }

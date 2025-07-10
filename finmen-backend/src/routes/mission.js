@@ -1,9 +1,10 @@
 const express = require('express');
-const { createMission, getMissions } = require('../controllers/missionController');
+const { createMission, getMissions, completeMission } = require('../controllers/missionController');
 
 const router = express.Router();
 
 router.post('/', createMission);
-router.get('/', getMissions); // Changed from '/:userId' to '/' with auth
+router.get('/', getMissions);
+router.post('/complete', completeMission);
 
 module.exports = router;
