@@ -50,7 +50,7 @@ exports.logMood = [
         
         await existingMood.save();
         // Award 10 HealCoins for update
-        await axios.post('http://localhost:5000/api/healcoin/earn', {}, {
+        await axios.post('https://finmen-mvp.onrender.com/api/healcoin/earn', {}, {
           headers: { Authorization: `Bearer ${req.headers.authorization.split(' ')[1]}` }
         });
 
@@ -70,7 +70,7 @@ exports.logMood = [
         
         await moodEntry.save();
         // Award 10 HealCoins for new entry
-        await axios.post('http://localhost:5000/api/healcoin/earn', {}, {
+        await axios.post('https://finmen-mvp.onrender.com/api/healcoin/earn', {}, {
           headers: { Authorization: `Bearer ${req.headers.authorization.split(' ')[1]}` }
         });
 

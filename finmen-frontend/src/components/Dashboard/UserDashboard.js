@@ -15,10 +15,10 @@ export default function UserDashboard() {
       try {
         const token = await AsyncStorage.getItem('jwtToken');
         const [dashboardRes, healcoinRes] = await Promise.all([
-          axios.get('http://192.168.0.106:5000/api/dashboard/user', {
+          axios.get('https://finmen-mvp.onrender.com/api/dashboard/user', {
             headers: { Authorization: `Bearer ${token}` },
           }),
-          axios.get('http://192.168.0.106:5000/api/healcoin/balance', {
+          axios.get('https://finmen-mvp.onrender.com/api/healcoin/balance', {
             headers: { Authorization: `Bearer ${token}` },
           }),
         ]);

@@ -44,7 +44,7 @@ export default function MissionList() {
     setLoading(true);
     try {
       const token = await AsyncStorage.getItem('jwtToken');
-      const response = await axios.get('http://192.168.0.106:5000/api/mission', {
+      const response = await axios.get('https://finmen-mvp.onrender.com/api/mission', {
         headers: { Authorization: `Bearer ${token}` },
       });
       setMissions(response.data);
@@ -159,7 +159,7 @@ export default function MissionList() {
     try {
       const token = await AsyncStorage.getItem('jwtToken');
       await axios.post(
-        'http://192.168.0.106:5000/api/mission',
+        'https://finmen-mvp.onrender.com/api/mission',
         {
           title: newMission.title,
           description: newMission.description,

@@ -18,8 +18,10 @@ import React, { useState, useEffect } from 'react';
        useEffect(() => {
          const checkAuth = async () => {
            const token = await AsyncStorage.getItem('jwtToken');
+           console.log('JWT token:', token);
            setIsAuthenticated(!!token); // Check if token exists
            setIsLoading(false);
+           AsyncStorage.removeItem('jwtToken');
          };
          checkAuth();
        }, []);

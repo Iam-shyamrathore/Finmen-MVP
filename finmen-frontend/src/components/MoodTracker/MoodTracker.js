@@ -37,7 +37,7 @@ export default function MoodTracker() {
     try {
       setLoading(true);
       const token = await AsyncStorage.getItem('jwtToken');
-      const response = await axios.get('http://192.168.0.106:5000/api/healcoin/balance', {
+      const response = await axios.get('https://finmen-mvp.onrender.com/api/healcoin/balance', {
         headers: { Authorization: `Bearer ${token}` },
       });
       const { healCoins, xp, badges, streak } = response.data;
@@ -46,7 +46,7 @@ export default function MoodTracker() {
       setBadges(badges || []);
       setStreak(streak || 0);
 
-      const moodRes = await axios.get('http://192.168.0.106:5000/api/mood', {
+      const moodRes = await axios.get('https://finmen-mvp.onrender.com/api/mood', {
         headers: { Authorization: `Bearer ${token}` },
       });
       const sortedMoods = moodRes.data.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp)).slice(0, 7);
@@ -60,7 +60,7 @@ export default function MoodTracker() {
 
   const fetchHealCoinBalance = async (token) => {
     try {
-      const response = await axios.get('http://192.168.0.106:5000/api/healcoin/balance', {
+      const response = await axios.get('https://finmen-mvp.onrender.com/api/healcoin/balance', {
         headers: { Authorization: `Bearer ${token}` },
       });
       const { healCoins, xp, badges, streak } = response.data;
@@ -83,7 +83,7 @@ export default function MoodTracker() {
     try {
       const token = await AsyncStorage.getItem('jwtToken');
       await axios.post(
-        'http://192.168.0.106:5000/api/mood',
+        'https://finmen-mvp.onrender.com/api/mood',
         { mood: moods[moodIndex].label.toLowerCase(), note, journal },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -108,7 +108,7 @@ export default function MoodTracker() {
           try {
             const token = await AsyncStorage.getItem('jwtToken');
             await axios.post(
-              'http://192.168.0.106:5000/api/healcoin/redeem',
+              'https://finmen-mvp.onrender.com/api/healcoin/redeem',
               { item, amount },
               { headers: { Authorization: `Bearer ${token}` } }
             );
